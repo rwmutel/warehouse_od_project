@@ -7,13 +7,13 @@ from tqdm import tqdm
 import argparse
 
 def parse_args():
-    parser = argparse.ArgumentParser(description="Process images with depth estimation and dim distant objects")
+    parser = argparse.ArgumentParser(description="Process images with depth estimation and dim/highlight distant objects")
     parser.add_argument("--input_folder", type=str, required=True, help="Folder containing input images")
     parser.add_argument("--output_folder", type=str, required=True, help="Folder to save processed images")
     parser.add_argument("--model_name", type=str, default="depth-anything/Depth-Anything-V2-Base-hf", 
                         help="DepthAnything model name on HuggingFace")
     parser.add_argument("--depth_strength", type=float, default=1.0, 
-                        help="Strength of depth dimming effect (0-1)")
+                        help="Strength of depth dimming/highlighting effect (-1-1)")
     parser.add_argument("--batch_size", type=int, default=8,
                         help="Number of images to process simultaneously")
     return parser.parse_args()
@@ -43,9 +43,11 @@ def process_batch(model, processor, image_batch, args):
         ).squeeze().cpu().numpy()
         
         depth_normalized = (depth - depth.min()) / (depth.max() - depth.min())
-        depth_normalized = 1 - depth_normalized
-        # depth_factor = 1 - (depth_normalized * args.depth_strength)
-        depth_factor = (depth_normalized * args.depth_strength)
+        
+        if args.depth_strength > 0:
+            depth_factor = 1.0 - (depth_normalized * args.depth_strength)
+        else:
+            depth_factor = (depth_normalized * abs(args.depth_strength))
         
         img_array = np.array(image).astype(np.float32) / 255.0
         for c in range(3):

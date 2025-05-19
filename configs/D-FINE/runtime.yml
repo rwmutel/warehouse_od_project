@@ -1,0 +1,24 @@
+print_freq: 100
+output_dir: '../../ckpt/dfine'
+checkpoint_freq: 12
+
+
+sync_bn: True
+find_unused_parameters: False
+
+
+use_amp: False
+scaler:
+  type: GradScaler
+  enabled: True
+
+
+use_ema: False
+ema:
+  type: ModelEMA
+  decay: 0.9999
+  warmups: 1000
+
+use_wandb: True
+project_name: wob-cv-ucu # for wandb
+exp_name: dfine_loco # wandb experiment name
