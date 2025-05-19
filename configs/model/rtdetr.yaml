@@ -1,0 +1,3 @@
+name: rtdetr
+model_checkpoint: PekingU/rtdetr_r18vd
+fine_tune: false

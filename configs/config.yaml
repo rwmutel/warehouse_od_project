@@ -1,0 +1,18 @@
+defaults:
+  - model: rtdetr
+
+data:
+  base_dir: /root/cv/project/data/loco_depth_mult_inv
+  train_annotations: /root/cv/project/data/loco_depth_mult_inv/train.json
+  val_annotations: /root/cv/project/data/loco_depth_mult_inv/val.json
+  test_annotations: /root/cv/project/data/loco_depth_mult_inv/test.json
+training:
+  batch_size: 8
+  num_workers: 16
+  max_epochs: 100
+  learning_rate: 0.001
+  weight_decay: 0.001
+logging:
+  project_name: wob-cv-ucu
+  run_name: rtdetr_loco
+  log_model: false

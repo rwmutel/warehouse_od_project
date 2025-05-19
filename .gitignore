@@ -1,0 +1,6 @@
+data/
+3d/datasets
+ckpt/
+wandb/
+outputs/
+wob-cv-ucu/
