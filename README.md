@@ -2,6 +2,8 @@
 
 This report covers technical guide for our course project. For details on dataset and 3D object detection preresearch refer to [this report](https://pinnate-legume-751.notion.site/Warehouse-Object-Detection-1f29ea9ac91780bf90a9dad47145b7f5?pvs=4)
 
+For weights of YOLO X and D-FINE, and test split annotated by corresponding models, refer to this [shared folder](https://drive.google.com/drive/folders/1dVTfusz8uDaD1-z0CSuBujqlfKukxhkS?usp=sharing).
+
 ## Data Acquisition and Transformation
 
 We used LOCO dataset, explained in the corresponding [paper+repository](https://github.com/tum-fml/loco).
